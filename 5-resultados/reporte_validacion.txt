@@ -1,0 +1,13 @@
+INFORME DE VALIDACIÓN TERMODINÁMICA
+Fecha: 2026-03-19 20:04:46.465872 
+
+Número de átomos: 2629 
+Grados de libertad: 7881 
+Constante de Boltzmann: 8.314463e-03 kJ/(mol·K)
+
+                    Concepto    X298.K     X400.K
+      E_cin teórica (kJ/mol) 9763.4157 13105.2560
+ E_cin experimental (kJ/mol) 9720.1576 13050.8715
+                   Error (%)   -0.4431    -0.4150
+    Temperatura promedio (K)  296.4531   398.0344
+          Radio de giro (nm)    0.4521     0.4370

@@ -1,0 +1,31 @@
+ANÁLISIS ESTRUCTURAL – 298 K
+Fecha: 2026-03-19 20:16:28.779943 
+
+Histogramas generados:
+ - hist_temperatura_298K.png
+ - hist_vx_298K.png
+ - hist_vy_298K.png
+ - hist_vz_298K.png
+
+Ramachandran plots generados:
+ - ramachandran_ALA2_298K.png
+ - ramachandran_ARG3_298K.png
+ - ramachandran_PHE4_298K.png
+
+Distribución conformacional (%):
+
+ALA2 
+
+ beta otros 
+45.58 54.42 
+
+ARG3 
+
+ beta otros 
+87.08 12.92 
+
+PHE4 
+
+alpha_R    beta   otros 
+   3.89   72.64   23.47 
+

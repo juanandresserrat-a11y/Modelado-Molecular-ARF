@@ -1,0 +1,54 @@
+; runNVT.mdp
+
+
+; RUN CONTROL PARAMETERS
+integrator               = md      ; leap-frog integrator
+dt                       = 0.0005   ; 0.5 fs
+nsteps                   = 4000    ; 2 ps 
+define			 = -DFLEXIBLE -DCHARMM_TIP3P
+constraints          	 = none
+comm-mode                = Linear ; mode for center of mass motion removal
+nstcomm                  = 1000 ; number of steps for center of mass motion removal
+
+; OUTPUT CONTROL OPTIONS
+nstxout                  = 2    ; Save coordinates every 1 fs 
+nstvout                  = 2    ; Save velocities every 1 fs
+nstfout                  = 0	   ; Save forces
+nstlog                   = 2    ; Update log every 1 fs
+nstenergy                = 2    ; Save energies every 1 fs
+nstcalcenergy        	 = 1000
+
+
+; NEIGHBORSEARCHING PARAMETERS
+nstlist                  = 10
+ns-type                  = Grid
+pbc                      = xyz
+rlist                    = 1.1
+cutoff-scheme		 = Verlet 
+
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+coulombtype              = PME
+rcoulomb                 = 1.1
+fourierspacing		 = 0.12		; Dimensiones de la Grid (para PME)
+vdwtype=Cut-off
+vdw_modifier=Potential-switch
+rvdw_switch              = 0.9
+rvdw                     = 1.1          ; Large vdW cut-off
+; DISPERSION CORRECTION
+DispCorr                 = EnerPres     ; Use with vdW vut-off
+
+; Temperature coupling
+;Tcoupl                   = Berendsen             ; Modification Berendsen (Bussi): real NVT
+Tcoupl			  = v-rescale
+ld_seed			  = 87654321
+tc-grps                  = System
+tau_t                    = 0.1                
+ref_t                    = 400                ; Avobe fluid phase trasition
+
+; GENERATE VELOCITIES FOR STARTUP RUN
+gen_vel                  = no    ; Should be the first equilibration
+;gen_seed                 = 12345678     ; Random seed
+
+
+
