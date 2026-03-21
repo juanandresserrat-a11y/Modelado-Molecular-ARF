@@ -27,15 +27,15 @@ Genera la caja, solvata el péptido (~860 moléculas de agua, ~2629 átomos tota
 
 ### Paso 2 — Neutralización y equilibrado (400 ps)
 
-    bash 02_equilibration_298K.sh      # o sbatch submit_equilibration_298K.sh
-    bash 02_equilibration_400K.sh      # o sbatch submit_equilibration_400K.sh
+    bash 02_equilibration_298K.sh      # sbatch submit_equilibration_298K.sh
+    bash 02_equilibration_400K.sh      # sbatch submit_equilibration_400K.sh
 
 Neutraliza la carga neta +1 del péptido añadiendo un ion Cl- y equilibra el sistema a cada temperatura.
 
 ### Paso 3 — Producción básica (2 ps)
 
-    bash 03_production_298K.sh         # o sbatch submit_production_298K.sh
-    bash 03_production_400K.sh         # o sbatch submit_production_400K.sh
+    bash 03_production_298K.sh         # sbatch submit_production_298K.sh
+    bash 03_production_400K.sh         # sbatch submit_production_400K.sh
 
 Continúa la dinámica desde el estado final del equilibrado. No genera velocidades nuevas.
 
@@ -52,7 +52,7 @@ Extrae energía, temperatura, distancias, ángulos, radio de giro y velocidades.
 
     Rscript 05_validation.R
 
-Gráficos comparativos entre 298 K y 400 K con mayor calidad visual usando ggplot2.
+Gráficos comparativos entre 298 K y 400 K con mayor calidad visual usando ggplot2, se adjunta una versión haciendo uso de gnuplot por si existiese algún problema.
 
 ---
 
@@ -61,8 +61,8 @@ Gráficos comparativos entre 298 K y 400 K con mayor calidad visual usando ggplo
     bash Opcional/01_construccion_298K.sh
     bash Opcional/02_equilibration_298K.sh
     bash Opcional/03_production_500ps.sh
-    bash Opcional/04_analysis_500ps.sh
-    bash Opcional/04_plots_298K.sh       # vestigio del flujo básico, útil para comprobación interna
+    bash Opcional/04_analysis_500ps.sh    # vestigio del flujo básico, útil para comprobación interna
+    bash Opcional/04_plots_298K.sh        # vestigio del flujo básico, útil para comprobación interna
     Rscript Opcional/05_validation_500ps.R
 
 Genera histogramas de temperatura, distribuciones de velocidad y diagramas de Ramachandran para los tres residuos (Ala-2, Arg-3, Phe-4).
@@ -72,5 +72,6 @@ Genera histogramas de temperatura, distribuciones de velocidad y diagramas de Ra
 ## Notas
 
 - dt = 0.5 fs obligatorio con TIP3P flexible. No aumentar sin cambiar el modelo de agua.
-- Para adaptar a otro péptido: reemplazar arf.pdb y actualizar referencias en 01_construccion.sh.
+- Para adaptar a otro péptido: reemplazar arf.pdb y actualizar referencias, necesario considerar la carga total del peptido y actuzalizarlo.
 - Los scripts SLURM usan 1 CPU por defecto. Modificar según el clúster.
+- Se realiza de manera segmentada y manual debido al gran tiempo de espera entre algunas secciones y para facilitar la comprobación de resultados.
