@@ -89,24 +89,6 @@ gmx angle -f arf.trr -n angles.ndx -ov angulo_N_CA_C_ALA2.xvg -xvg none <<EOF
 1
 EOF
 
-echo "CÁLCULO DE DIEDROS"
-gmx rama -f arf.trr -s arf.tpr -xvg none -o rama.xvg
-
-echo "EXTRACCIÓN ALA-2"
-grep "ALA-2" rama.xvg | awk '{print $1}' | cat -n > phi-ala2.dat
-grep "ALA-2" rama.xvg | awk '{print $2}' | cat -n > psi-ala2.dat
-join phi-ala2.dat psi-ala2.dat > ramachandran-ala2.dat
-
-echo "EXTRACCIÓN ARG-3"
-grep "ARG-3" rama.xvg | awk '{print $1}' | cat -n > phi-arg3.dat
-grep "ARG-3" rama.xvg | awk '{print $2}' | cat -n > psi-arg3.dat
-join phi-arg3.dat psi-arg3.dat > ramachandran-arg3.dat
-
-echo "EXTRACCIÓN PHE-4"
-grep "PHE-4" rama.xvg | awk '{print $1}' | cat -n > phi-phe4.dat
-grep "PHE-4" rama.xvg | awk '{print $2}' | cat -n > psi-phe4.dat
-join phi-phe4.dat psi-phe4.dat > ramachandran-phe4.dat
-
 echo "EXTRACCIÓN DE VELOCIDADES"
 gmx traj -f arf.trr -s arf.tpr -xvg none -ov velocidades.xvg <<EOF
 1
@@ -132,4 +114,4 @@ done
 
 echo ""
 echo "=============================================="
-echo "TOTAL DE ARCHIVOS GENERADOS: $(ls *.xvg *.dat 2>/dev/null | wc -l)"
+echo "TOTAL DE ARCHIVOS GENERADOS: $(ls *.xvg 2>/dev/null | wc -l)"
